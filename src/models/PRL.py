@@ -8,7 +8,7 @@ from utils import layers
 from utils.constants import *
 
 
-class ReaSASRec(SequentialModel):
+class PRL(SequentialModel):
     reader = "BaseReader"
     extra_log_args = [
         "emb_size",
@@ -214,8 +214,4 @@ class ReaSASRec(SequentialModel):
                 labels.unsqueeze(1).expand(-1, T),
             )
 
-        return (
-            loss
-            + self.pl_weight * pl_loss
-            + self.cl_weight * cl_loss
-        )
+        return loss + self.pl_weight * pl_loss + self.cl_weight * cl_loss
